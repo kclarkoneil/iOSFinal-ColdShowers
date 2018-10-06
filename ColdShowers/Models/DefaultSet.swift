@@ -20,6 +20,13 @@ class DefaultSet {
     
     let context = appDelegate.persistentContainer.viewContext
     
+    //MARK: before posting this app to App store; all sounds/images/text need to be updated to self created content
+    // all content used was for student learning purposes, and this project does not own the copyrights to the photos,
+    // text, or sounds used there in.
+    
+    
+    
+    
     //MARK: sets up initial settings for workout times; only does this once on intial loading of local data
     _ = ActivityTimes(context: context, timeStrengthValue: 1.0, timeMindfulValue: 1.0, timeYogaValue: 1.0)
     

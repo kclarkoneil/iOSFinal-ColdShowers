@@ -18,14 +18,14 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
   let center = UNUserNotificationCenter.current()
   
   override func viewDidLoad() {
-    center.removeAllDeliveredNotifications()
+    // center.removeAllDeliveredNotifications()
     
     super.viewDidLoad()
     self.tableView.delegate = self
     self.tableView.dataSource = self
-  
+    
     self.tableView.rowHeight = 44.0
-  
+    
   }
   
   override func viewDidAppear(_ animated: Bool) {

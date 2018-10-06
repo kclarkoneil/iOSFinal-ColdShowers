@@ -191,9 +191,9 @@ class ActivityListManager: NSObject {
     
     var returnList: [CoreActivity] = []
     var counter:Int = 0
-     // ONLY USE NUMBERS 1-6 FOR THIS FUNCTION
+    // ONLY USE NUMBERS 1-6 FOR THIS FUNCTION
     
-     while counter < amount {
+    while counter < amount {
       returnList.append(getRandomAct(Int(arc4random_uniform(6) + 1)))
       counter += 1
     }

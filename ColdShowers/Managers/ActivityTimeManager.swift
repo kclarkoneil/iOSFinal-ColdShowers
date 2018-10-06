@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class ActivityTimeManager: NSObject {
-
+  
   var hour = 00
   var minutes = 15
   var seconds = 00
@@ -18,7 +18,7 @@ class ActivityTimeManager: NSObject {
   var context:NSManagedObjectContext?
   
   var times: [ActivityTimes] = []
-    var desiredIntensity: [UserDesiredIntensity] = []
+  var desiredIntensity: [UserDesiredIntensity] = []
   
   override init() {
     guard let appDelegate =
@@ -28,34 +28,31 @@ class ActivityTimeManager: NSObject {
     
     context = appDelegate.persistentContainer.viewContext
     
-   
     let intensityRequest = NSFetchRequest<UserDesiredIntensity>(entityName: "UserDesiredIntensity")
-   // let allTimes = NSFetchRequest<ActivityTimes>(entityName: "ActivityTimes")
+    // let allTimes = NSFetchRequest<ActivityTimes>(entityName: "ActivityTimes")
     
     do {
-        guard let intensity = (try context?.fetch(intensityRequest)) else {
-            desiredIntensity[0].desiredIntensity = 1
-            do {
-                try context?.save()
-            } catch {
-                fatalError("Failed saving")
-            }
-            return
+      guard let intensity = (try context?.fetch(intensityRequest)) else {
+        desiredIntensity[0].desiredIntensity = 1
+        do {
+          try context?.save()
+        } catch {
+          fatalError("Failed saving")
         }
-        desiredIntensity = intensity
+        return
+      }
+      desiredIntensity = intensity
     } catch let error as NSError {
       print("Could not fetch. \(error), \(error.userInfo)")
     }
-    }
- // func all() -> Int {
-   // return Int(times[0].timeMindfulValue) + Int(times[0].timeStrengthValue) + Int(times[0].timeYogaValue)
-
-
+  }
+  // func all() -> Int {
+  // return Int(times[0].timeMindfulValue) + Int(times[0].timeStrengthValue) + Int(times[0].timeYogaValue)
   
   func getTime(_ category: String) -> Float {
     var timeValue:Float = 0.0
     if category == "Average Intensity" {
-        timeValue = Float(desiredIntensity[0].desiredIntensity)
+      timeValue = Float(desiredIntensity[0].desiredIntensity)
     }
     else if category == "Strength" {
       timeValue = 1.5
@@ -72,7 +69,7 @@ class ActivityTimeManager: NSObject {
   func setTime(_ category: String, value: Float) {
     
     if category == "Average Intensity" {
-        desiredIntensity[0].desiredIntensity = Int64(value)
+      desiredIntensity[0].desiredIntensity = Int64(value)
     }
     else if category == "Strength" {
       times[0].timeStrengthValue = value

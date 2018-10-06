@@ -58,84 +58,24 @@ class ActivityViewController: UIViewController {
   //MARK: Local Data
   let defaults = UserDefaults.standard
   
-//  //MARK: getting default time allotments for activities from userdefault
-//  var timeStrengthValue:Float = 0.0
-//  var timeMindfulValue:Float = 0.0
-//  var timeYogaValue:Float = 0.0
-  
   var timePerActivity:Float = 90 // 1.5mins
   
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     activityInstructionTextView.isHidden = true
     activityList = activityManager.getNewList()
-//    activityList = activityManager.getList(10) // DO NOT CHANGE FROM 10, AS IT'S DEPENDANT ON HARDCODED DATA
-
+    
     currentActivitySetCountLabel.text = "Current Set: \(currentActivity + 1) of \(activityList.count)"
     timerOverlaylabel.text = timeString(time: TimeInterval(timePerActivity))
-//    timeStrengthValue = 60 * timeManager.getTime("Strength")
-//    timeMindfulValue = 60 * timeManager.getTime("Mindful")
-//    timeYogaValue = 60 * timeManager.getTime("Yoga")
     
-    //MARK: get all times for all activities
-    // as all activities are 1.5 mins long now
-    // MARK: NON DYNAMIC DATA
-    // 15 mins is being used for ALL total workouts, * 60 gets total seconds
-    // each activity is 1.5 mins long
     estimatedTimeAmount.text = timeString(time: TimeInterval(timePerActivity * 10))
-    
-    
-    // need function that feeds in activity list
-    
-    // first step is just gettting length of array
-    
-    
-//    estimatedTimeAmount.text = timeString(time: TimeInterval(timeMindfulValue + timeYogaValue + timeStrengthValue))
-    
-    
-    //    // user default methods
-    //    timeStrengthValue = 60 * defaults.integer(forKey: "timeStrengthValue")
-    //    timeMindfulValue = 60 * defaults.integer(forKey: "timeMindfulValue")
-    //    timeYogaValue = 60 * defaults.integer(forKey: "timeYogaValue")
-    
-    
-    
-    
-    
-    
-//    switch self.currentActivity {
-//    case 0:
-//      self.timerOverlaylabel.text = self.timeString(time: TimeInterval(self.timeStrengthValue))
-//      self.activityCurrentTimerLabel.text = self.timeString(time: TimeInterval(self.timeStrengthValue))
-//      self.rootSeconds = self.timeStrengthValue
-//      self.seconds = self.timeStrengthValue
-//    case 1:
-//      self.timerOverlaylabel.text = self.timeString(time: TimeInterval(self.timeMindfulValue))
-//      self.activityCurrentTimerLabel.text = self.timeString(time: TimeInterval(self.timeMindfulValue))
-//      self.rootSeconds = self.timeMindfulValue
-//      self.seconds = self.timeMindfulValue
-//    case 2:
-//      self.timerOverlaylabel.text = self.timeString(time: TimeInterval(self.timeYogaValue))
-//      self.activityCurrentTimerLabel.text = self.timeString(time: TimeInterval(self.timeYogaValue))
-//      self.rootSeconds = self.timeYogaValue
-//      self.seconds = self.timeYogaValue
-//    default:
-//      fatalError("TIME VALUE ERROR")
-//    }
     
     //MARK: will keep the workout screen active.
     UIApplication.shared.isIdleTimerDisabled = true
     
     timerOverlayView.isHidden = true
     timerOverlayView.alpha = 0.0
-    
-    
-    
-    //    MakeBorder.addTopBorder(inpView: activityInstructionImage, withColor: UIColor.offWhite)
-    //    MakeBorder.addBottomBorder(inpView: activityInstructionImage, withColor: UIColor.offWhite)
-    //    MakeBorder.addBottomBorder(inpView: timerOverlayView, withColor: UIColor.jetBlack)
-    //    MakeBorder.addTopBorder(inpView: timerOverlayView, withColor: UIColor.jetBlack)
     
     loadData()
   }
@@ -204,8 +144,6 @@ class ActivityViewController: UIViewController {
       self.activityStartButton.alpha = 1.0
       self.activityCancelButton.alpha = 1.0
     }) { (true) in
-      // runs this code once animation has finished; which includes the segue to the next screen if user has done all activities
-      
       
       self.timerOverlayView.isHidden = true
       self.activityStartButton.isEnabled = true
@@ -218,58 +156,15 @@ class ActivityViewController: UIViewController {
       
       self.timer.invalidate()
       
-      
-      
-//      if self.activityList[self.currentActivity].category == 0 {
-//        self.seconds = self.timeStrengthValue
-//        self.timerOverlaylabel.text = self.timeString(time: TimeInterval(self.timeStrengthValue))
-//      } else if self.activityList[self.currentActivity].category == 1 {
-//        self.seconds = self.timeMindfulValue
-//        self.timerOverlaylabel.text = self.timeString(time: TimeInterval(self.timeMindfulValue))
-//      } else if self.activityList[self.currentActivity].category == 2 {
-//        self.seconds = self.timeYogaValue
-//        self.timerOverlaylabel.text = self.timeString(time: TimeInterval(self.timeYogaValue))
-//      } else {
-//        // DO NOTHING
-//      }
-      
-      
-      
       if self.currentActivity < (self.activityList.count - 1) {
         self.currentActivity += 1
         
-            self.currentActivitySetCountLabel.text = "Current Set: \(self.currentActivity + 1) of \(self.activityList.count)"
+        self.currentActivitySetCountLabel.text = "Current Set: \(self.currentActivity + 1) of \(self.activityList.count)"
         
         self.timerOverlaylabel.text = self.timeString(time: TimeInterval(self.timePerActivity))
         self.activityCurrentTimerLabel.text = self.timeString(time: TimeInterval(self.timePerActivity))
         self.rootSeconds = self.timePerActivity
         self.seconds = self.timePerActivity
-        
-        
-        
-        
-        
-        
-//        switch self.currentActivity {
-//        case 0:
-//          self.timerOverlaylabel.text = self.timeString(time: TimeInterval(self.timeStrengthValue))
-//          self.activityCurrentTimerLabel.text = self.timeString(time: TimeInterval(self.timeStrengthValue))
-//          self.rootSeconds = self.timeStrengthValue
-//          self.seconds = self.timeStrengthValue
-//        case 1:
-//          self.timerOverlaylabel.text = self.timeString(time: TimeInterval(self.timeMindfulValue))
-//          self.activityCurrentTimerLabel.text = self.timeString(time: TimeInterval(self.timeMindfulValue))
-//          self.rootSeconds = self.timeMindfulValue
-//          self.seconds = self.timeMindfulValue
-//        case 2:
-//          self.timerOverlaylabel.text = self.timeString(time: TimeInterval(self.timeYogaValue))
-//          self.activityCurrentTimerLabel.text = self.timeString(time: TimeInterval(self.timeYogaValue))
-//          self.rootSeconds = self.timeYogaValue
-//          self.seconds = self.timeYogaValue
-//        default:
-//          fatalError("TIME VALUE ERROR")
-//        }
-        
         
         self.loadData()
       } else {
