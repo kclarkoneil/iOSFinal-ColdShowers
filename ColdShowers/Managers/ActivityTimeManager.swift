@@ -17,7 +17,7 @@ class ActivityTimeManager: NSObject {
   
   var context:NSManagedObjectContext?
   
-  var times: [ActivityTimes] = []
+ 
     var desiredIntensity: [UserDesiredIntensity] = []
   
   override init() {
@@ -30,7 +30,7 @@ class ActivityTimeManager: NSObject {
     
    
     let intensityRequest = NSFetchRequest<UserDesiredIntensity>(entityName: "UserDesiredIntensity")
-   // let allTimes = NSFetchRequest<ActivityTimes>(entityName: "ActivityTimes")
+
     
     do {
         guard let intensity = (try context?.fetch(intensityRequest)) else {
@@ -47,11 +47,7 @@ class ActivityTimeManager: NSObject {
       print("Could not fetch. \(error), \(error.userInfo)")
     }
     }
- // func all() -> Int {
-   // return Int(times[0].timeMindfulValue) + Int(times[0].timeStrengthValue) + Int(times[0].timeYogaValue)
 
-
-  
   func getTime(_ category: String) -> Float {
     var timeValue:Float = 0.0
     if category == "Average Intensity" {

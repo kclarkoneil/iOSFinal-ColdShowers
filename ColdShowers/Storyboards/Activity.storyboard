@@ -130,7 +130,7 @@
                                                     <color key="titleColor" red="0.2784313725" green="0.2784313725" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="timerOverlayButtonPressed:" destination="I7O-jL-Gvc" eventType="touchUpInside" id="ch0-9v-Gsb"/>
+                                                    <action selector="doneButtonPressed:" destination="I7O-jL-Gvc" eventType="touchUpInside" id="nEh-Tn-YHs"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -319,7 +319,7 @@
         <image name="instructionsIconSmall" width="195" height="150"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Uyx-Zs-Bkp"/>
+        <segue reference="4gZ-EE-2oz"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.82352941180000006" green="0.29411764709999999" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
